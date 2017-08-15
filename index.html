@@ -29,7 +29,9 @@
 <div class="container">
 
   <div class="app">
-
+    <div class="select">
+            <label for="videoSource">Video source: </label><select id="videoSource"></select>
+    </div>
     <a href="#" id="start-camera" class="visible">Touch here to start the app.</a>
     <video muted id="camera-stream"></video>
     <img id="snap">
@@ -38,6 +40,7 @@
 
     <div class="controls">
       <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
+      <a href="#" id="change-photo" title="change Photo"><i class="material-icons">cached</i></a>
       <a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
       <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled"><i class="material-icons">file_download</i></a>  
     </div>

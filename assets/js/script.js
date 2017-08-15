@@ -6,10 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
         start_camera = document.querySelector('#start-camera'),
         controls = document.querySelector('.controls'),
         take_photo_btn = document.querySelector('#take-photo'),
+        change_photo_btn = document.querySelector('#change-photo'),
         delete_photo_btn = document.querySelector('#delete-photo'),
         download_photo_btn = document.querySelector('#download-photo'),
         error_message = document.querySelector('#error-message');
 
+    var cameras = [];
+
+    var videoSelect = document.querySelector('select#videoSource');    
 
     // The getUserMedia interface is used for handling camera input.
     // Some browsers need a prefix so here we're covering all the options
@@ -20,6 +24,25 @@ document.addEventListener('DOMContentLoaded', function () {
         navigator.msGetUserMedia
     );
 
+    navigator.mediaDevices.enumerateDevices().then(getDevices);
+
+    console.log(cameras)
+
+    function getDevices(deviceInfos) {
+        for (var i = 0; i !== deviceInfos.length; ++i) {
+        var deviceInfo = deviceInfos[i];
+        var option = document.createElement('option');
+        option.value = deviceInfo.deviceId;
+          if (deviceInfo.kind === 'videoinput') {
+            cameras.push(deviceInfo);
+            option.text = deviceInfo.label || 'camera ' +
+            (videoSelect.length + 1);
+            videoSelect.appendChild(option);
+          } else {
+            console.log('Found one other kind of source/device: ', deviceInfo);
+          }
+        }
+    }
 
     if(!navigator.getMedia){
         displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
@@ -28,7 +51,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // Request the camera.
         navigator.getMedia(
             {
-                video: true
+                video: {
+                    optional: [{
+                      sourceId: videoSelect.value
+                    }]
+                }
             },
             // Success Callback
             function(stream) {
@@ -65,6 +92,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
+    change_photo_btn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+    });
 
     take_photo_btn.addEventListener("click", function(e) {
 
