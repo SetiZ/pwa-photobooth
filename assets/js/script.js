@@ -60,11 +60,6 @@ function getStream() {
     }
   
     var constraints = {
-      audio: {
-        optional: [{
-          sourceId: audioSelect.value
-        }]
-      },
       video: {
         optional: [{
           sourceId: videoSelect.value
@@ -100,7 +95,7 @@ function getStream() {
             },
             // Success Callback
             function(stream) {
-
+                console.log(stream)
                 // Create an object URL for the video stream and
                 // set it as src of our HTLM video element.
                 video.src = window.URL.createObjectURL(stream);
@@ -133,15 +128,15 @@ function getStream() {
 
     });
 
-    videoSelect.onchange = function() {
-        video.src = window.URL.createObjectURL(stream);
+    // videoSelect.onchange = function() {
+    //     video.src = window.URL.createObjectURL(stream);
         
-        // Play the video element to start the stream.
-        video.play();
-        video.onplay = function() {
-            showVideo();
-        };
-    }
+    //     // Play the video element to start the stream.
+    //     video.play();
+    //     video.onplay = function() {
+    //         showVideo();
+    //     };
+    // }
 
     // change_photo_btn.addEventListener("click", function(e) {
     //     e.preventDefault();
