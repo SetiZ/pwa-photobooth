@@ -24,9 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
         navigator.msGetUserMedia
     );
 
+
+    // videoSelect.onchange = getStream;
+    
     navigator.mediaDevices.enumerateDevices().then(getDevices);
 
-    console.log(cameras)
+    // console.log(cameras)
 
     function getDevices(deviceInfos) {
         for (var i = 0; i !== deviceInfos.length; ++i) {
@@ -39,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
             (videoSelect.length + 1);
             videoSelect.appendChild(option);
           } else {
-            console.log('Found one other kind of source/device: ', deviceInfo);
+            // console.log('Found one other kind of source/device: ', deviceInfo);
           }
         }
     }
@@ -92,10 +95,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    change_photo_btn.addEventListener("click", function(e) {
-        e.preventDefault();
+    videoSelect.onchange = function() {
+        video.src = window.URL.createObjectURL(stream);
+        
+        // Play the video element to start the stream.
+        video.play();
+        video.onplay = function() {
+            showVideo();
+        };
+    }
 
-    });
+    // change_photo_btn.addEventListener("click", function(e) {
+    //     e.preventDefault();
+
+    // });
 
     take_photo_btn.addEventListener("click", function(e) {
 
