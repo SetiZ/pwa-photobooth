@@ -47,6 +47,44 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+
+    videoSelect.onchange = getStream;
+    
+
+    
+function getStream() {
+    if (window.stream) {
+      window.stream.getTracks().forEach(function(track) {
+        track.stop();
+      });
+    }
+  
+    var constraints = {
+      audio: {
+        optional: [{
+          sourceId: audioSelect.value
+        }]
+      },
+      video: {
+        optional: [{
+          sourceId: videoSelect.value
+        }]
+      }
+    };
+  
+    navigator.mediaDevices.getUserMedia(constraints).
+      then(gotStream).catch(handleError);
+  }
+  
+  function gotStream(stream) {
+    window.stream = stream; // make stream available to console
+    videoElement.srcObject = stream;
+  }
+  
+  function handleError(error) {
+    console.log('Error: ', error);
+  }
+
     if(!navigator.getMedia){
         displayErrorMessage("Your browser doesn't have support for the navigator.getUserMedia interface.");
     }
