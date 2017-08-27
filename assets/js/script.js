@@ -102,7 +102,6 @@ function getStream() {
             },
             // Success Callback
             function(stream) {
-                console.log(stream)
                 // Create an object URL for the video stream and
                 // set it as src of our HTLM video element.
                 video.src = window.URL.createObjectURL(stream);
@@ -165,7 +164,11 @@ function getStream() {
         download_photo_btn.classList.remove("disabled");
 
         // Set the href attribute of the download button to the snap url.
-        download_photo_btn.href = snap;
+        // download_photo_btn.href = snap;
+        var request = new XMLHttpRequest();
+        request.open('POST', '/photos/', true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        request.send(snap);
 
         // Pause video playback of stream.
         video.pause();
@@ -211,6 +214,7 @@ function getStream() {
             context.drawImage(video, 0, 0, width, height);
 
             // Turn the canvas image into a dataURL that can be used as a src for our photo.
+            console.log(hidden_canvas.toDataURL('image/png'))
             return hidden_canvas.toDataURL('image/png');
         }
     }
