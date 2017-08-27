@@ -164,17 +164,23 @@ function getStream() {
         download_photo_btn.classList.remove("disabled");
 
         // Set the href attribute of the download button to the snap url.
-        // download_photo_btn.href = snap;
-        var request = new XMLHttpRequest();
-        request.open('POST', '/photos/', true);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        request.send(snap);
+        download_photo_btn.href = snap;
+        
 
         // Pause video playback of stream.
         video.pause();
 
     });
 
+    download_photo_btn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        var fiel = new File([this.href], "file.jpg", {type: "image/jpg"});
+        console.log(fiel);
+        var f = new File([""], "filename.txt", {type: "text/plain"})
+        
+        
+    });
 
     delete_photo_btn.addEventListener("click", function(e) {
 
@@ -214,7 +220,6 @@ function getStream() {
             context.drawImage(video, 0, 0, width, height);
 
             // Turn the canvas image into a dataURL that can be used as a src for our photo.
-            console.log(hidden_canvas.toDataURL('image/png'))
             return hidden_canvas.toDataURL('image/png');
         }
     }
