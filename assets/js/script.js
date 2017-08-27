@@ -73,7 +73,14 @@ function getStream() {
   
   function gotStream(stream) {
     window.stream = stream; // make stream available to console
-    videoElement.srcObject = stream;
+    // video.srcObject = stream;
+    video.src = window.URL.createObjectURL(stream);
+
+    // Play the video element to start the stream.
+    video.play();
+    video.onplay = function() {
+        showVideo();
+    };
   }
   
   function handleError(error) {
