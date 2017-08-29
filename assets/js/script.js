@@ -175,9 +175,15 @@ function getStream() {
     download_photo_btn.addEventListener("click", function(e) {
         e.preventDefault();
 
+        var request = new XMLHttpRequest();
+        request.open('POST', 'http://localhost:3000', true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        
+
         var fiel = new File([this.href], "file.jpg", {type: "image/jpg"});
+        request.send(this.href);
         console.log(fiel);
-        var f = new File([""], "filename.txt", {type: "text/plain"})
+        // var f = new File([""], "filename.txt", {type: "text/plain"})
         
         
     });
