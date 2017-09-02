@@ -105,7 +105,7 @@ function getStream() {
                 // Create an object URL for the video stream and
                 // set it as src of our HTLM video element.
                 video.src = window.URL.createObjectURL(stream);
-
+                console.log(videoSelect.value);
                 // Play the video element to start the stream.
                 video.play();
                 video.onplay = function() {
@@ -176,12 +176,21 @@ function getStream() {
         e.preventDefault();
 
         var request = new XMLHttpRequest();
-        request.open('POST', 'http://localhost:3000', true);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        
+        request.open('POST', 'http://localhost:3000/upload', true);
+        // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        request.setRequestHeader('Content-Type', 'multipart/form-data');
+        // xhr.send(formdata);
+        // xhr.onreadystatechange = function(){
+        //     if(xhr.readyState != 4) return;
+        //     if(xhr.status != 200){
+        //         alert("Status: " + xhr.status);
+        //     }else{
+        //         alert(xhr.responseText);
+        //     }
+        // };
 
         var fiel = new File([this.href], "file.jpg", {type: "image/jpg"});
-        request.send(this.href);
+        request.send(fiel);
         console.log(fiel);
         // var f = new File([""], "filename.txt", {type: "text/plain"})
         
