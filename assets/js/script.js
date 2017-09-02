@@ -176,7 +176,7 @@ function getStream() {
         e.preventDefault();
 
         var request = new XMLHttpRequest();
-        request.open('POST', 'http://localhost:3000/upload', true);
+        request.open('POST', 'https://163.172.44.104:3000/upload', true);
         // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.setRequestHeader('Content-Type', 'multipart/form-data');
         // xhr.send(formdata);
