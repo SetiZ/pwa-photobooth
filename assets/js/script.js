@@ -174,25 +174,22 @@ function getStream() {
 
     download_photo_btn.addEventListener("click", function(e) {
         e.preventDefault();
-
-        var request = new XMLHttpRequest();
-        request.open('POST', 'https://serv.astridmehdi.com/upload', true);
+        // var request = new XMLHttpRequest();
+        // request.open('POST', 'https://serv.astridmehdi.com/upload', true);
+        // request.open('POST', 'http://localhost:3000/upload', true);
         // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        request.setRequestHeader('Content-Type', 'multipart/form-data');
-        // xhr.send(formdata);
-        // xhr.onreadystatechange = function(){
-        //     if(xhr.readyState != 4) return;
-        //     if(xhr.status != 200){
-        //         alert("Status: " + xhr.status);
-        //     }else{
-        //         alert(xhr.responseText);
-        //     }
-        // };
+        // request.setRequestHeader('Content-Type', 'multipart/form-data');
+        // request.send(this.href);
 
-        var fiel = new File([this.href], "file.jpg", {type: "image/jpg"});
-        request.send(fiel);
-        console.log(fiel);
-        // var f = new File([""], "filename.txt", {type: "text/plain"})
+        fetch("http://localhost:3000/upload", {
+            method: "POST",
+            headers: { "Content-Type": "application/octet-stream" },
+            // credentials: "same-origin",            
+            body: this.href }).then(function(res) {
+                console.log(res.status,res.statusText, res.headers, res.url)
+            }, function(error){
+                console.log(error.message)
+            })
         
         
     });
