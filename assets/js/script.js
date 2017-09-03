@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var cameras = [];
 
-    var videoSelect = document.querySelector('select#videoSource');    
+    var videoSelect = document.querySelector('select#videoSource');
 
     // The getUserMedia interface is used for handling camera input.
     // Some browsers need a prefix so here we're covering all the options
-    navigator.getMedia = ( 
+    navigator.getMedia = (
         navigator.getUserMedia ||
         navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia ||
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // videoSelect.onchange = getStream;
-    
+
     navigator.mediaDevices.enumerateDevices().then(getDevices);
 
     // console.log(cameras)
@@ -49,16 +49,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     videoSelect.onchange = getStream;
-    
 
-    
+
+
 function getStream() {
     if (window.stream) {
       window.stream.getTracks().forEach(function(track) {
         track.stop();
       });
     }
-  
+
     var constraints = {
       video: {
         optional: [{
@@ -66,11 +66,11 @@ function getStream() {
         }]
       }
     };
-  
+
     navigator.mediaDevices.getUserMedia(constraints).
       then(gotStream).catch(handleError);
   }
-  
+
   function gotStream(stream) {
     window.stream = stream; // make stream available to console
     // video.srcObject = stream;
@@ -82,7 +82,7 @@ function getStream() {
         showVideo();
     };
   }
-  
+
   function handleError(error) {
     console.log('Error: ', error);
   }
@@ -111,7 +111,7 @@ function getStream() {
                 video.onplay = function() {
                     showVideo();
                 };
-         
+
             },
             // Error Callback
             function(err) {
@@ -136,7 +136,7 @@ function getStream() {
 
     // videoSelect.onchange = function() {
     //     video.src = window.URL.createObjectURL(stream);
-        
+
     //     // Play the video element to start the stream.
     //     video.play();
     //     video.onplay = function() {
@@ -155,7 +155,7 @@ function getStream() {
 
         var snap = takeSnapshot();
 
-        // Show image. 
+        // Show image.
         image.setAttribute('src', snap);
         image.classList.add("visible");
 
@@ -165,7 +165,7 @@ function getStream() {
 
         // Set the href attribute of the download button to the snap url.
         download_photo_btn.href = snap;
-        
+
 
         // Pause video playback of stream.
         video.pause();
@@ -183,15 +183,19 @@ function getStream() {
 
         fetch("http://localhost:3000/upload", {
             method: "POST",
-            headers: { "Content-Type": "application/octet-stream" },
-            // credentials: "same-origin",            
-            body: this.href }).then(function(res) {
-                console.log(res.status,res.statusText, res.headers, res.url)
-            }, function(error){
-                console.log(error.message)
-            })
-        
-        
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                image: this.href,
+            }),
+        })
+        .then(function(res) {
+            console.log(res.status,res.statusText, res.headers, res.url)
+        }, function(error){
+            console.log(error.message)
+        })
     });
 
     delete_photo_btn.addEventListener("click", function(e) {
@@ -214,7 +218,7 @@ function getStream() {
 
 
     function takeSnapshot() {
-        // Here we're using a trick that involves a hidden canvas element.  
+        // Here we're using a trick that involves a hidden canvas element.
 
         var hidden_canvas = document.querySelector('canvas'),
             context = hidden_canvas.getContext('2d');
@@ -256,7 +260,7 @@ function getStream() {
         error_message.classList.add("visible");
     }
 
-   
+
     function hideUI() {
         // Helper function for clearing the app UI.
 
