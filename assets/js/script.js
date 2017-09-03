@@ -174,12 +174,6 @@ function getStream() {
 
     download_photo_btn.addEventListener("click", function(e) {
         e.preventDefault();
-        // var request = new XMLHttpRequest();
-        // request.open('POST', 'https://serv.astridmehdi.com/upload', true);
-        // request.open('POST', 'http://localhost:3000/upload', true);
-        // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        // request.setRequestHeader('Content-Type', 'multipart/form-data');
-        // request.send(this.href);
 
         fetch("http://localhost:3000/upload", {
             method: "POST",
