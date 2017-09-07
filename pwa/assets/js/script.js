@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             cameras.push(deviceInfo);
             option.text = deviceInfo.label || 'camera ' +
             (videoSelect.length + 1);
-            if (i %2 == 0) {
+            if (videoSelect.length %2 == 0) {
                 video.style.transform = ('rotateY(180deg)')
             }
             videoSelect.appendChild(option);
