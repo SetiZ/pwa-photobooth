@@ -105,7 +105,6 @@ function getStream() {
                 // Create an object URL for the video stream and
                 // set it as src of our HTLM video element.
                 video.src = window.URL.createObjectURL(stream);
-                console.log(videoSelect.value);
                 // Play the video element to start the stream.
                 video.play();
                 video.onplay = function() {
@@ -133,21 +132,6 @@ function getStream() {
         showVideo();
 
     });
-
-    // videoSelect.onchange = function() {
-    //     video.src = window.URL.createObjectURL(stream);
-
-    //     // Play the video element to start the stream.
-    //     video.play();
-    //     video.onplay = function() {
-    //         showVideo();
-    //     };
-    // }
-
-    // change_photo_btn.addEventListener("click", function(e) {
-    //     e.preventDefault();
-
-    // });
 
     take_photo_btn.addEventListener("click", function(e) {
 
@@ -186,7 +170,7 @@ function getStream() {
             }),
         })
         .then(function(res) {
-            console.log(res.status,res.statusText, res.headers, res.url)
+            // console.log(res.status,res.statusText, res.headers, res.url)
         }, function(error){
             console.log(error.message)
         })
