@@ -59,8 +59,10 @@ function getStream() {
       });
     }
 
-    if (videoSelect.label.indexOf('front') != -1) {
+    if (videoSelect.selectedIndex == 1) {
         video.style.transform = ('rotateY(180deg)')
+    } else {
+        video.style.transform = ('rotateY(0deg)')
     }
 
     var constraints = {
