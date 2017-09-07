@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
             cameras.push(deviceInfo);
             option.text = deviceInfo.label || 'camera ' +
             (videoSelect.length + 1);
+            if (i %2 == 0) {
+                video.style.transform = ('rotateY(180deg)')
+            }
             videoSelect.appendChild(option);
           } else {
             // console.log('Found one other kind of source/device: ', deviceInfo);
@@ -158,7 +161,7 @@ function getStream() {
 
     download_photo_btn.addEventListener("click", function(e) {
         e.preventDefault();
-        
+        // fetch("https://localhost:3000/upload", {
         fetch("https://photo.astridmehdi.com/upload", {
             method: "POST",
             headers: {

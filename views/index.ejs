@@ -2,7 +2,14 @@
 <html>
     <head>
         <meta http-equiv="refresh" content="30">            
-        <link rel="stylesheet" type="text/css" href="/style.css">       
+        <style>
+           #slidy-container {
+                box-shadow: 0 0 12px rgba(0,0,0,0.4);
+                width: 50%;
+                margin: 50px auto;
+                overflow: hidden;
+            }
+        </style>
     </head>
     <body>
         <div id="slidy-container">
@@ -19,7 +26,9 @@
         </div>
 
         <script src="/cssslidy.js"></script>
-        <script> cssSlidy(); </script>
+        <script> cssSlidy({
+            captionSource: 'none',
+        }); </script>
 
     </body>
 </html>
