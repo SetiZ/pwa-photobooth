@@ -40,10 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
             cameras.push(deviceInfo);
             option.text = deviceInfo.label || 'camera ' +
             (videoSelect.length + 1);
-            console.log(deviceInfo)
-            if (deviceInfo.label.indexOf('front') != -1) {
-                video.style.transform = ('rotateY(180deg)')
-            }
             videoSelect.appendChild(option);
           } else {
             // console.log('Found one other kind of source/device: ', deviceInfo);
@@ -61,6 +57,10 @@ function getStream() {
       window.stream.getTracks().forEach(function(track) {
         track.stop();
       });
+    }
+
+    if (videoSelect.label.indexOf('front') != -1) {
+        video.style.transform = ('rotateY(180deg)')
     }
 
     var constraints = {
