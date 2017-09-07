@@ -1,0 +1,29 @@
+#slidy-container {
+    box-shadow: 0 0 12px rgba(0,0,0,0.4);
+	width: 70%;
+	margin: 50px auto;
+	overflow: hidden;
+}
+
+/* #slidy {
+    left: 0%;
+    transform: translate3d(0,0,0);
+    animation: 16s slidy infinite;
+}
+
+#slidy {
+    text-align: left;
+    margin: 0;
+    font-size: 0;
+    position: relative;
+    width: 500%;
+}
+
+#slidy img {
+    float: left;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    width: 20%;
+    height: auto;
+} */

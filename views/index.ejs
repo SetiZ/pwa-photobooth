@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="refresh" content="30">            
+        <link rel="stylesheet" type="text/css" href="/style.css">       
+    </head>
+    <body>
+        <div id="slidy-container">
+            <figure id="slidy">
+                <%
+                for (var i = 0; i < images.length; i++) { 
+                    var image = images[i];
+                %>
+                <img src="<%= image %>" alt data-caption="" />
+                <%
+                    }
+                %>
+            </figure>
+        </div>
+
+        <script src="/cssslidy.js"></script>
+        <script> cssSlidy(); </script>
+
+    </body>
+</html>
