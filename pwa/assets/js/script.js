@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
             cameras.push(deviceInfo);
             option.text = deviceInfo.label || 'camera ' +
             (videoSelect.length + 1);
+            video.style.transform = ('rotateY(180deg)')
             videoSelect.appendChild(option);
           } else {
             // console.log('Found one other kind of source/device: ', deviceInfo);
@@ -59,7 +60,7 @@ function getStream() {
       });
     }
 
-    video.style.transform = ('rotateY(180deg)')
+    
     if (videoSelect.selectedIndex %2 === 0) {
         video.style.transform = ('rotateY(180deg)')
     } else {
