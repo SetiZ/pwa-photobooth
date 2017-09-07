@@ -59,7 +59,7 @@ function getStream() {
       });
     }
 
-    if (videoSelect.selectedIndex == 1) {
+    if (videoSelect.selectedIndex %2 === 0) {
         video.style.transform = ('rotateY(180deg)')
     } else {
         video.style.transform = ('rotateY(0deg)')
