@@ -159,7 +159,7 @@ function getStream() {
     download_photo_btn.addEventListener("click", function(e) {
         e.preventDefault();
         
-        fetch("http://localhost:3000/upload", {
+        fetch("https://photo.astridmehdi.com/upload", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
