@@ -58,8 +58,8 @@
                 caption = who.getAttribute(options.captionSource); }
                 who.parentNode.insertBefore(temp, who);
                 if (options.captionSource == "alt" || options.captionSource == "data-caption") {
-                 if (caption !== null) {
-                     content = document.createElement('figcaption');
+                if (caption !== null) {
+                    content = document.createElement('figcaption');
                     content.innerHTML = caption;
                     // places captions in each <figure> element, if required
                     }

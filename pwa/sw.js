@@ -32,5 +32,5 @@ self.addEventListener('fetch', function(event) {
 			// Fallback to network if resource not stored in cache.
 			return response || fetch(event.request);
 		})
-  	);
+	);
 });

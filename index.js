@@ -7,7 +7,6 @@ const base64Img = require('base64-img');
 const path = require('path');
 const url = require('url');
 const ejs = require('ejs');
-const sqreen = require('sqreen');
 const app = express();
 
 app.set('views', 'views');  // Specify the folder to find templates
